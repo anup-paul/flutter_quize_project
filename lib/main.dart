@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quize_project/question.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +34,27 @@ class quizeScreen extends StatefulWidget {
 }
 
 class _quizeScreenState extends State<quizeScreen> {
+  List<Icon> scoreKeeper = [];
+
+  List<String> questions = [
+    "React is a Javascript Library",
+    "Array and List are same in flutter",
+    "Flutter using by Dart",
+    "React is a Javascript Library",
+    "Array and List are same in flutter",
+    "Flutter using by Dart",
+  ];
+
+  List<bool> answers = [true, false, true, false, false, true];
+
+  List<Question> questionBank = [
+    Question(q: "React is a Javascript Library", a: true),
+    Question(q: "Array and List are same in flutter", a: false),
+    Question(q: "Flutter using by Dart", a: true),
+  ];
+
+  int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +68,7 @@ class _quizeScreenState extends State<quizeScreen> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  "This will be our quize question This will be our quize question This will be our quize question ",
+                  questions[questionNumber],
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
@@ -61,7 +83,34 @@ class _quizeScreenState extends State<quizeScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(40, 50), primary: Colors.green[900]),
-                    onPressed: () {},
+                    onPressed: () {
+                      bool corretAnswer = answers[questionNumber];
+                      if (corretAnswer == true) {
+                        print("True");
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      } else {
+                        print("False");
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        );
+                      }
+
+                      setState(() {
+                        questionNumber++;
+                        // scoreKeeper.add(Icon(
+                        //   Icons.check,
+                        //   color: Colors.green,
+                        // ));
+                      });
+                    },
                     child: Text(
                       "True",
                       style: TextStyle(fontSize: 20),
@@ -73,7 +122,34 @@ class _quizeScreenState extends State<quizeScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(40, 50), primary: Colors.red[900]),
-                    onPressed: () {},
+                    onPressed: () {
+                      bool corretAnswer = answers[questionNumber];
+                      if (corretAnswer == false) {
+                        print("true");
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      } else {
+                        print("false");
+                        scoreKeeper.add(
+                          Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        );
+                      }
+
+                      setState(() {
+                        questionNumber++;
+                        // scoreKeeper.add(Icon(
+                        //   Icons.close,
+                        //   color: Colors.red,
+                        // ));
+                      });
+                    },
                     child: Text(
                       "False",
                       style: TextStyle(fontSize: 20),
@@ -82,7 +158,14 @@ class _quizeScreenState extends State<quizeScreen> {
                 ),
               ],
             ),
-          )
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.all(10),
+            child: Row(
+              children: scoreKeeper,
+            ),
+          ),
         ],
       ),
     );
