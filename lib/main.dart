@@ -36,18 +36,21 @@ class quizeScreen extends StatefulWidget {
 class _quizeScreenState extends State<quizeScreen> {
   List<Icon> scoreKeeper = [];
 
-  List<String> questions = [
-    "React is a Javascript Library",
-    "Array and List are same in flutter",
-    "Flutter using by Dart",
-    "React is a Javascript Library",
-    "Array and List are same in flutter",
-    "Flutter using by Dart",
-  ];
+  // List<String> questions = [
+  //   "React is a Javascript Library",
+  //   "Array and List are same in flutter",
+  //   "Flutter using by Dart",
+  //   "React is a Javascript Library",
+  //   "Array and List are same in flutter",
+  //   "Flutter using by Dart",
+  // ];
 
-  List<bool> answers = [true, false, true, false, false, true];
+  // List<bool> answers = [true, false, true, false, false, true];
 
   List<Question> questionBank = [
+    Question(q: "React is a Javascript Library", a: true),
+    Question(q: "Array and List are same in flutter", a: false),
+    Question(q: "Flutter using by Dart", a: true),
     Question(q: "React is a Javascript Library", a: true),
     Question(q: "Array and List are same in flutter", a: false),
     Question(q: "Flutter using by Dart", a: true),
@@ -68,7 +71,7 @@ class _quizeScreenState extends State<quizeScreen> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  questions[questionNumber],
+                  questionBank[questionNumber].questionText,
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
@@ -84,7 +87,8 @@ class _quizeScreenState extends State<quizeScreen> {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(40, 50), primary: Colors.green[900]),
                     onPressed: () {
-                      bool corretAnswer = answers[questionNumber];
+                      bool corretAnswer =
+                          questionBank[questionNumber].questionAnswer;
                       if (corretAnswer == true) {
                         print("True");
                         scoreKeeper.add(
@@ -123,7 +127,8 @@ class _quizeScreenState extends State<quizeScreen> {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(40, 50), primary: Colors.red[900]),
                     onPressed: () {
-                      bool corretAnswer = answers[questionNumber];
+                      bool corretAnswer =
+                          questionBank[questionNumber].questionAnswer;
                       if (corretAnswer == false) {
                         print("true");
                         scoreKeeper.add(
