@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quize_project/question.dart';
+import 'package:flutter_quize_project/quizeBrain.dart';
+
+QuizBrain quizeBrain = QuizBrain();
 
 void main() => runApp(MyApp());
 
@@ -47,14 +50,14 @@ class _quizeScreenState extends State<quizeScreen> {
 
   // List<bool> answers = [true, false, true, false, false, true];
 
-  List<Question> questionBank = [
-    Question(q: "React is a Javascript Library", a: true),
-    Question(q: "Array and List are same in flutter", a: false),
-    Question(q: "Flutter using by Dart", a: true),
-    Question(q: "React is a Javascript Library", a: true),
-    Question(q: "Array and List are same in flutter", a: false),
-    Question(q: "Flutter using by Dart", a: true),
-  ];
+  // List<Question> questionBank = [
+  //   Question(q: "React is a Javascript Library", a: true),
+  //   Question(q: "Array and List are same in flutter", a: false),
+  //   Question(q: "Flutter using by Dart", a: true),
+  //   Question(q: "React is a Javascript Library", a: true),
+  //   Question(q: "Array and List are same in flutter", a: false),
+  //   Question(q: "Flutter using by Dart", a: true),
+  // ];
 
   int questionNumber = 0;
 
@@ -71,7 +74,7 @@ class _quizeScreenState extends State<quizeScreen> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  questionBank[questionNumber].questionText,
+                  quizeBrain.questionBank[questionNumber].questionText,
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
@@ -88,7 +91,7 @@ class _quizeScreenState extends State<quizeScreen> {
                         fixedSize: Size(40, 50), primary: Colors.green[900]),
                     onPressed: () {
                       bool corretAnswer =
-                          questionBank[questionNumber].questionAnswer;
+                          quizeBrain.questionBank[questionNumber].questionAnswer;
                       if (corretAnswer == true) {
                         print("True");
                         scoreKeeper.add(
@@ -128,7 +131,7 @@ class _quizeScreenState extends State<quizeScreen> {
                         fixedSize: Size(40, 50), primary: Colors.red[900]),
                     onPressed: () {
                       bool corretAnswer =
-                          questionBank[questionNumber].questionAnswer;
+                          quizeBrain.questionBank[questionNumber].questionAnswer;
                       if (corretAnswer == false) {
                         print("true");
                         scoreKeeper.add(
